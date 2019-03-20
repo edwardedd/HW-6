@@ -118,7 +118,7 @@ console.log(usersToObject(users));
 
 
 
-/////11   неправильно зроблено. я переробляю
+/////11   
 const users = [
   { name: 'John', birthday: '1999-2-12' },
   { name: 'Bill', birthday: '1999-1-19' },
@@ -127,27 +127,42 @@ const users = [
 ];
 
 function filterUsersByMonth(users, month) { 
-	return users.filter(function(date){
-		if((date['birthday'].split('-'))[1] == month){
-			return true;
-		} else {
-			return false;
-		}
-	});
- }
+	let secretMan="";
+	users.forEach((usr)=>{
+		let birth = new Date(usr.birthday);
+		if (birth.getMonth() === month){	
+		secretMan = usr;		
+ 		}; 		
+	})
+	return secretMan
+}	
+	
 console.log(filterUsersByMonth(users, 0)) 
 // [{ name: 'Bill', birthday: '1999-1-19' }]
 
 
+/////12
+const users = [
+  { name: 'John', birthday: '1999-6-12' },
+  { name: 'Bill', birthday: '2005-5-19' },
+  { name: 'Carol', birthday: '2003-10-11' },
+  { name: 'Luce', birthday: '2000-11-22' }
+];
 
-
-
-
-
-
-
-
-
+function getAdultNames(users) { 
+	let result = [];
+	const minYear = new Date().getFullYear();
+	users.forEach((usr)=>{
+		const usrYear = new Date(usr.birthday).getFullYear();
+		const addult = minYear - usrYear;
+		if (addult >=18){
+			result.push(`${usr.name} ${addult}`);
+		};
+	});
+	return result.join()
+ }
+ console.log(getAdultNames(users));
+ 
 
 
 
