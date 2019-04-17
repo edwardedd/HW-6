@@ -45,14 +45,14 @@ console.log(factorial(7));
 
 /////5
 function bombTimer(str, time){
-	setTimeout( function timer(){
-		if (time >= 1){		
-		console.log(time--);
-		setTimeout(timer,1000);
-	} else {
-		console.log(str);		
+	setTimeout (()=>{
+		if(time>=1){
+			console.log(time)
+		return bombTimer(str, time-1);
+	}else{
+		console.log(str);
 	}
-	},0)	
+	},1000)	
 }
 bombTimer('booom',3)
 
@@ -75,7 +75,12 @@ function filterNumbers(arr, maxNumber) {
 
 //7
 function minMax(arr){
-  return 'max: ' + Math.max(...arr) + ' min: ' + Math.min(...arr);
+	let newCount = {};
+	newCount.min = Math.min(...arr);
+	newCount.max = Math.max(...arr);
+	
+	return newCount;
+  
 }
 console.log(minMax([1, 4, 8, 2, 20]));
 
@@ -83,7 +88,7 @@ console.log(minMax([1, 4, 8, 2, 20]));
 function arrAvg(arr) {
   return arr.reduce((a,b) => a+b, 0)/arr.length;
 }
-console.log(arrAvg([1,4,2,8,14]));
+console.log(arrAvg([1,4,2,8,14]).toFixed(2));
 
 
 /////9
